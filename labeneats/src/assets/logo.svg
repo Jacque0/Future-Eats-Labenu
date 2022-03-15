@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="58" viewBox="0 0 104 58">
+    <g fill="none" fill-rule="evenodd" font-size="32">
+        <text fill="#000" font-family="Montserrat-Regular, Montserrat" letter-spacing="-.576" transform="translate(-3)">
+            <tspan x="0" y="31">F</tspan> <tspan x="19.104" y="31">utu</tspan> <tspan x="75.168" y="31" letter-spacing="-.416">r</tspan> <tspan x="87.168" y="31">e</tspan>
+        </text>
+        <text fill="#5CB646" font-family="Montserrat-Bold, Montserrat" font-weight="bold" letter-spacing="-.128" transform="translate(-3)">
+            <tspan x="1" y="60">E</tspan> <tspan x="22.216" y="60">ats</tspan>
+        </text>
+    </g>
+</svg>

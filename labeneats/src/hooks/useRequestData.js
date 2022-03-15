@@ -1,16 +1,25 @@
-import { useState } from "react"
+import { useState } from "react";
 
- export const useForm = (initialState) => {
-     const [form, setForm] = useState(initialState)
+export const useRequestData = (initialData, url) => {
+  let [data, setData] = useState(initialData);
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
-     const handleChange = (e) => {
-         const {name, value} = e.target
-         setForm({...form, [name]: value})
-     }
+  const getData = () => {
+    axios
+      .get(url)
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.response);
+        setLoading(false);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, [url]);
 
-     const clearForm = () => {
-         setForm(initialState)
-     }
-
-     return {form, handleChange, clearForm}
- }
+  return {data, error, loading};
+};

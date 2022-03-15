@@ -9,7 +9,7 @@ export default function Header({ title, goToScreen }) {
 
     return (
         <Bar>
-            <Back className='BackIcon' onClick={() => goToScreen(navigate)} />
+            {goToScreen && <Back className='BackIcon' onClick={() => goToScreen(navigate)} />}
             <Title>
                 {title && title}
             </Title>

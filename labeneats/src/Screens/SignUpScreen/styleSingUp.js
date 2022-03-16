@@ -20,25 +20,6 @@ export const ContainerSingUp = styled.div`
   }
 `;
 
-export const Bar = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 34px;
-  margin: 0 0 16px;
-  padding: 10px 0 10px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0.5px 0 0 ${primaryColors.black25};
-  background-color: #fff;
-  .back {
-    width: 23px;
-    height: 24px;
-    margin: 10px 321px 0 16px;
-    object-fit: contain;
-  }
-`;
-
 export const Title = styled.div`
   width: 100%;
   height: 42px;
@@ -73,5 +54,9 @@ export const ButtonCreate = styled(Button)`
   height: 42px;
   padding: 12px 16px;
   border-radius: 2px;
-  margin: 8px 0 0;
 `;
+
+export const ContainerButton = styled.div`
+  width: 100%;
+  padding-top: 16px;
+`

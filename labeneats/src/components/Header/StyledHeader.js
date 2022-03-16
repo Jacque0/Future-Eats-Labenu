@@ -1,16 +1,16 @@
 import styled from 'styled-components';
+import {primaryColors} from '../../constants/colors';
 
 export const Bar = styled.div`
 display:flex;
 align-items:center;
-border-bottom:1px solid #E6E6E6;
-box-shadow: 0 0.5px 0 0 var(--black-25);
+box-shadow: 0 0.5px 0 0 ${primaryColors.black25};
 width:100%;
 height: 64px;
 
     .BackIcon{
         position: absolute;
-        left: 6%;
+        left: 16px;
         width: 8%;
     }
 `

@@ -1,8 +1,16 @@
-import React from "react";
-import { InputText, ButtonCreate } from "./styleSingUp";
-import {useForm} from '../../hooks/useForm'
+import React, { useState } from "react";
+import { InputText, ButtonCreate, ContainerButton } from "./styleSingUp";
+import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router";
 import { goToEditAdress } from "../../routes/coordinator";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
 import axios from "axios";
 
 export default function SignUpForm() {
@@ -12,23 +20,50 @@ export default function SignUpForm() {
     cpf: "",
     password: "",
   });
-  const navigate = useNavigate()
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [helperText, setHelperText] = useState("");
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const navigate = useNavigate();
 
-  const postSignUp = (body) =>{
+  //Colocar na pasta services
+  const postSignUp = (body) => {
     axios
-            .post(`https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup`, body)
-            .then((res) => {
-                localStorage.setItem('token', res.data.token)
-                clearForm()
-                goToEditAdress(navigate)
-            })
-            .catch((err) => {
-                console.log(err.response)
-                alert(err.response.data.message)
-            })
-    
-  }
+      .post(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup`,
+        body
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        clearForm();
+        goToEditAdress(navigate);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert(err.response.data.message);
+      });
+  };
+  // Fim da pasta services
 
+  const onChangeConfirm = (event) => {
+    if (event.target.value === form.password) {
+      setErrorPassword(false);
+      setHelperText("");
+    } else {
+      setErrorPassword(true);
+      setHelperText("Deve ser a mesma que a anterior");
+    }
+  };
+
+  const handleClickShowPassword1 = () => {
+    setShowPassword1(!showPassword1);
+  };
+  const handleClickShowPassword2 = () => {
+    setShowPassword2(!showPassword2);
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const onSubmitForm = (event) => {
     event.preventDefault();
     postSignUp(form);
@@ -39,7 +74,7 @@ export default function SignUpForm() {
       <InputText
         required
         value={form.name}
-        name='name'
+        name="name"
         onChange={handleChange}
         label="Nome"
         placeholder="Nome e sobrenome"
@@ -48,41 +83,85 @@ export default function SignUpForm() {
       <InputText
         required
         value={form.email}
-        name='email'
+        name="email"
         onChange={handleChange}
         label="E-mail"
         placeholder="email@email.com"
         margin="dense"
-        type='email'
+        type="email"
       />
       <InputText
         required
         value={form.cpf}
-        name='cpf'
+        name="cpf"
         onChange={handleChange}
         label="CPF"
         placeholder="000.000.000-00"
         margin="dense"
-        inputProps={{ inputMode: 'numeric', pattern: "^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}" }}
+        inputProps={{
+          inputMode: "numeric",
+          pattern: "^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}",
+        }}
       />
-      <InputText
-        required
-        value={form.password}
-        name='password'
-        onChange={handleChange}
-        label="Senha"
-        placeholder="Mínimo 6 caracteres"
-        type="password"
-        margin="dense"
-      />
-      <InputText
-        required
-        label="Confirmar"
-        placeholder="Confirme a senha anterior"
-        type="password"
-        margin="dense"
-      />
-      <ButtonCreate type="submit" variant="contained">Criar</ButtonCreate>
+      <FormControl sx={{ marginTop: 1.1 }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">Senha *</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-password"
+          required
+          value={form.password}
+          name="password"
+          onChange={handleChange}
+          label="Senha"
+          placeholder="Mínimo 6 caracteres"
+          type={showPassword1 ? "text" : "password"}
+          margin="dense"
+          inputProps={{ pattern: "^.{6,}$" }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleClickShowPassword1}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword1 ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <FormControl
+        sx={{ marginTop: 1.1, marginBottom: 1.5 }}
+        variant="outlined"
+      >
+        <InputLabel error={errorPassword} htmlFor="outlined-confirm-password">
+          Confirmar *
+        </InputLabel>
+        <OutlinedInput
+          id='outlined-confirm-password'
+          required
+          error={errorPassword}
+          onChange={onChangeConfirm}
+          label="Confirmar"
+          placeholder="Confirme a senha anterior"
+          type={showPassword2 ? "text" : "password"}
+          margin="dense"
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleClickShowPassword2}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword2 ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+        <FormHelperText error>{helperText}</FormHelperText>
+      </FormControl>
+      <ButtonCreate type="submit" variant="contained">
+        Criar
+      </ButtonCreate>
     </form>
   );
 }

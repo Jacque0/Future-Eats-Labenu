@@ -1,25 +1,16 @@
 import React from "react";
-import { Bar, ContainerSingUp, Title } from "./styleSingUp";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { ContainerSingUp, Title } from "./styleSingUp";
 import logo from "../../assets/logo.png";
 import SignUpForm from "./SignUpForm";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
+import Header from '../../components/Header/Header'
 
 export default function SignUpScreen() {
   // useUnprotectedPage();
   
   return (
     <ContainerSingUp>
-      <Bar>
-        <IconButton
-          color="secondary"
-          className="back"
-          aria-label="botão de voltar"
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-      </Bar>
+      <Header backButton={true} />
       <img src={logo} alt={"logo"} className="logo" />
       <Title>
         <p className="Text">Cadastrar</p>

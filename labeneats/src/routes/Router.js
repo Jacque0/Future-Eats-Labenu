@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 import LoginScreen from "../Screens/LoginScreen/LoginScreen";
-import SignUpScreen from "../Screens/LoginScreen/LoginScreen";
+import SignUpScreen from "../Screens/SignUpScreen/SignUpScreen";
 import EditProfileScreen from "../Screens/EditProfileScreen/EditProfileScreen";
 import EditAdressScreen from "../Screens/EditAdressScreen/EditAdressScreen";
 import RestaurantScreen from "../Screens/RestaurantScreen/RestaurantScreen";

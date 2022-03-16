@@ -2,33 +2,17 @@ import React from 'react'
 import { useRequestData } from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/BASE_URL'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { CardsContainer, HeaderContainer, HomePageContainer, SearchContainer } from './styled'
-import { goToSearch } from '../../routes/coordinator'
-
-
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+import { CardsContainer, HeaderContainer, SearchContainer } from './styled'
 import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-
 import SearchIcon from '@mui/icons-material/Search';
-import theme from '../../constants/theme'
-
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-
-
 import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router-dom'
+import Header from '../../components/Header/Header'
 
 export default function SearchScreen() {
  /*  useProtectedPage() */
 
-  const navigate = useNavigate() 
-
-  const restaurants = useRequestData([], `${BASE_URL}/restaurants`).data
+  const restaurants = useRequestData([], `${BASE_URL}/restaurants`).data.restaurants
 
   const [restaurantName, setRestaurantName] = React.useState("");
 
@@ -42,7 +26,7 @@ export default function SearchScreen() {
     if( restaurantName === "") {
       return 
     } else {
-      return restaurant.name.includes(restaurantName)
+      return restaurant.name.toUpperCase().includes(restaurantName.toUpperCase())
     }
   }).map(restaurant => {
     return <RestaurantCard
@@ -53,45 +37,39 @@ export default function SearchScreen() {
             deliveryTime={restaurant.deliveryTime} />
   })
 
-  
-
   return (
-      <div>
-        <HeaderContainer>
-      <p>Busca</p>
-      </HeaderContainer>
-      <hr />
+    <div>
+      <Header title="Busca" backButton="backButton" />
       <SearchContainer>
-      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-        <TextField id="outlined-search" type="search"  variant='outlined' label="Restaurante" sx={{width: 345,margin: "auto", marginTop: 2 }}
-          value={restaurantName}
-          onChange={handleChange}
-          InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon sxc={{ color: 'action.active', mr: 1, my: 0.5 }}/>
-            </InputAdornment>
-          ),
-        }}/>
-      </Box>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <TextField id="outlined-search" type="search"  variant='outlined' label="Restaurante" sx={{width: 345,margin: "auto", marginTop: 2 }}
+            autoFocus
+            value={restaurantName}
+            onChange={handleChange}
+            InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sxc={{ color: 'action.active', mr: 1, my: 0.5 }}/>
+              </InputAdornment>
+            ),
+          }}/>
+        </Box>
       </SearchContainer>
-        {restaurantName === "" ?
+      {restaurantName === "" ?
         <HeaderContainer>
           <p>Busque por nome de restaurante</p>
         </HeaderContainer>
-        :
-        (restaurantsList.length === 0 ?
+      :
+      (restaurantsList.length === 0 ?
         <HeaderContainer> 
           <p>Não encontramos :(</p>
         </HeaderContainer>
-        :
+      :
         <CardsContainer>
         {restaurantsList}
-        
       </CardsContainer> 
-        )
-        }
-       {console.log(restaurantsList)}
-      </div>
+      )
+      }
+    </div>
   )
 }

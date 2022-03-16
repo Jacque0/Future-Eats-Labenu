@@ -15,7 +15,7 @@ export const useRequestData = (initialData, url) => {
         }
     })
       .then((res) => {
-        setData(res.data.restaurants);
+        setData(res.data);
         setLoading(false);
       })
       .catch((err) => {

@@ -3,8 +3,11 @@ import GlobalStateContext from "./GlobalStateContext";
 import { useState } from "react";
 
 const GlobalState = (props) => {
-    const states = {}
-    const setters = {}
+    const [cart, setCart] = useState([])
+    const [idBuy, setIdBuy] = useState('')
+    
+    const states = {cart, idBuy}
+    const setters = {setCart, setIdBuy}
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>

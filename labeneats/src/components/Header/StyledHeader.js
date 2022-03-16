@@ -7,7 +7,8 @@ align-items:center;
 box-shadow: 0 0.5px 0 0 ${primaryColors.black25};
 width:100%;
 height: 64px;
-
+position: sticky;
+top: 0;
     .BackIcon{
         position: absolute;
         left: 16px;

@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+import EditProfileForm from './EditProfileForm';
+import Header from '../../components/Header/Header';
+import { ContainerEditProfile } from './StylesEditProfile';
 
 export default function EditProfileScreen() {
   return (
-    <div>EditProfileScreen</div>
+    <ContainerEditProfile>
+      <Header backButton={true} title={'Editar'} />
+      <EditProfileForm />
+    </ContainerEditProfile>
   )
 }

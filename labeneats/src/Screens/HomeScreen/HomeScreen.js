@@ -12,6 +12,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 export default function HomeScreen() {
  /*  useProtectedPage() */
@@ -95,6 +96,7 @@ export default function HomeScreen() {
       <CardsContainer>
         {restaurantsList}
       </CardsContainer>
+      <Footer />
     </div>
   )
 }

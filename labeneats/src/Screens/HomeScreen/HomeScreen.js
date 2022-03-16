@@ -2,7 +2,7 @@ import React from 'react'
 import { useRequestData } from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/BASE_URL'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { CardsContainer, SearchContainer } from './styled'
+import { CardsContainer, LoadingContainer, SearchContainer } from './styled'
 import { goToSearch } from '../../routes/coordinator'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -13,13 +13,20 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import LoopIcon from '@mui/icons-material/Loop';
+import Typography from '@mui/material/Typography';
+import theme from '../../constants/theme'
 
 export default function HomeScreen() {
  /*  useProtectedPage() */
 
   const navigate = useNavigate() 
 
-  const restaurants = useRequestData([], `${BASE_URL}/restaurants`).data.restaurants
+  const data = useRequestData([], `${BASE_URL}/restaurants`)
+
+  const restaurants = data.data.restaurants
+  const loading = data.loading
+  console.log(loading)
 
   const [valueCategory, setValueCategory] = React.useState(0);
 
@@ -93,9 +100,23 @@ export default function HomeScreen() {
           <Tab label="Carnes" />
        </Tabs>
       </Box>
-      <CardsContainer>
-        {restaurantsList}
-      </CardsContainer>
+      {loading?
+      
+        <LoadingContainer> 
+          <LoopIcon fontSize='large' color='primary'/>
+          <Typography 
+            variant="h6" 
+            gutterBottom component="div" 
+            sx={{color: theme.palette.primary.main}}
+            >Carregando ...
+            </Typography>
+        </LoadingContainer>
+    
+      :
+        <CardsContainer>
+          {restaurantsList}
+        </CardsContainer>
+      }
       <Footer />
     </div>
   )

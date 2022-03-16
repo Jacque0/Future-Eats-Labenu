@@ -1,28 +1,22 @@
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import { TextContainer } from "./styledRestaurantCard";
 import theme from "../../constants/theme";
-import { useNavigate } from "react-router-dom";
-import { goToRestaurant } from "../../routes/coordinator";
+import { TextContainer } from "./styledDetailedRestaurantCard";
 
-export default function RestaurantCard(props) {
-  const navigate = useNavigate();
+function DetailedRestaurantCard(props) {
+  console.log(props.details);
   return (
     <Card
       sx={{ maxWidth: 345, borderRadius: 3, margin: "auto", marginBottom: 5 }}
-      onClick={() => goToRestaurant(navigate, props.id)}
     >
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="150"
-          image={props.logoUrl}
-          alt="Restaurantes"
-        />
+        <CardMedia component="img" image={props.details?.logoUrl} height="150" alt="Restaurantes" />
         <CardContent>
           <Typography
             gutterBottom
@@ -30,24 +24,32 @@ export default function RestaurantCard(props) {
             component="div"
             color="secondary.contrastText"
           >
-            {props.name}
+            {props.details?.name}
           </Typography>
           <TextContainer>
             <Typography
               variant="body2"
               sx={{ color: theme.palette.terciary.main }}
             >
-              {props.deliveryTime} min
+              {props.details?.deliveryTime} min
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: theme.palette.terciary.main }}
             >
-              Frete R${parseInt(props.shipping).toFixed(2)}
+              Frete R${parseInt(props.details?.shipping).toFixed(2)}
             </Typography>
           </TextContainer>
+          <Typography
+            variant="body2"
+            sx={{ color: theme.palette.terciary.main, marginTop: '1vh' }}
+          >
+            {props.details?.address}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
   );
 }
+
+export default DetailedRestaurantCard;

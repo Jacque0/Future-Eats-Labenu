@@ -2,7 +2,7 @@ import React from 'react'
 import { useRequestData } from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/BASE_URL'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { CardsContainer, SearchContainer } from './styled'
+import { CardsContainer, LoadingContainer, SearchContainer } from './styled'
 import { goToSearch } from '../../routes/coordinator'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -12,64 +12,88 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
+import LoopIcon from '@mui/icons-material/Loop';
+import Typography from '@mui/material/Typography';
+import theme from '../../constants/theme'
+
 
 export default function HomeScreen() {
- /*  useProtectedPage() */
+  /*  useProtectedPage() */
 
-  const navigate = useNavigate() 
+  const navigate = useNavigate();
 
-  const restaurants = useRequestData([], `${BASE_URL}/restaurants`).data.restaurants
+
+  const data = useRequestData([], `${BASE_URL}/restaurants`)
+
+  const restaurants = data.data.restaurants
+  const loading = data.loading
+  console.log(loading)
+
 
   const [valueCategory, setValueCategory] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValueCategory(newValue);
-    console.log(valueCategory)
   };
 
-  const restaurantsList = restaurants?.filter(restaurant => {
-    if( valueCategory === 0) {
-      return restaurant
-    } else if (valueCategory === 1) {
-      return restaurant.category === "Hamburguer"
-    } else if (valueCategory === 2) {
-      return restaurant.category === "Asiática"
-    } else if (valueCategory === 3) {
-      return restaurant.category === "Árabe"
-    } else if (valueCategory === 4) {
-      return restaurant.category === "Mexicana"
-    } else if (valueCategory === 5) {
-      return restaurant.category === "Baiana"
-    } else if (valueCategory === 6) {
-      return restaurant.category === "Petiscos"
-    } else if (valueCategory === 7) {
-      return restaurant.category === "Sorvetes"
-    } else if (valueCategory === 8) {
-      return restaurant.category === "Carnes"
-    }
-  }).map(restaurant => {
-    return <RestaurantCard
-            key = {restaurant.id}
-            logoUrl ={restaurant.logoUrl} 
-            name={restaurant.name} 
-            shipping={restaurant.shipping} 
-            deliveryTime={restaurant.deliveryTime} />
-  })
+  const restaurantsList = restaurants
+    ?.filter((restaurant) => {
+      if (valueCategory === 0) {
+        return restaurant;
+      } else if (valueCategory === 1) {
+        return restaurant.category === "Hamburguer";
+      } else if (valueCategory === 2) {
+        return restaurant.category === "Asiática";
+      } else if (valueCategory === 3) {
+        return restaurant.category === "Árabe";
+      } else if (valueCategory === 4) {
+        return restaurant.category === "Mexicana";
+      } else if (valueCategory === 5) {
+        return restaurant.category === "Baiana";
+      } else if (valueCategory === 6) {
+        return restaurant.category === "Petiscos";
+      } else if (valueCategory === 7) {
+        return restaurant.category === "Sorvetes";
+      } else if (valueCategory === 8) {
+        return restaurant.category === "Carnes";
+      }
+    })
+    .map((restaurant) => {
+      return (
+        <RestaurantCard
+          key={restaurant.id}
+          id={restaurant.id}
+          logoUrl={restaurant.logoUrl}
+          name={restaurant.name}
+          shipping={restaurant.shipping}
+          deliveryTime={restaurant.deliveryTime}
+        />
+      );
+    });
 
   return (
     <div>
-      <Header title="FutureEats"/>
+      <Header title="FutureEats" />
       <SearchContainer>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <TextField id="outlined-search" type="search"  variant='outlined' label="Restaurante" sx={{width: 345,margin: "auto", marginTop: 2 }}
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          <TextField
+            id="outlined-search"
+            type="search"
+            variant="outlined"
+            label="Restaurante"
+            sx={{ width: 345, margin: "auto", marginTop: 2 }}
             onClick={() => goToSearch(navigate)}
             InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon sxc={{ color: 'action.active', mr: 1, my: 0.5 }}/>
-              </InputAdornment>
-            ),
-          }}/>
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon
+                    sxc={{ color: "action.active", mr: 1, my: 0.5 }}
+                  />
+                </InputAdornment>
+              ),
+            }}
+          />
         </Box>
       </SearchContainer>
       <Box sx={{ maxWidth: { xs: 350, sm: 480 }, margin: "auto" }}>
@@ -81,8 +105,8 @@ export default function HomeScreen() {
           allowScrollButtonsMobile
           aria-label="scrollable force tabs example"
         >
-          <Tab label="Tudo"/>
-          <Tab label="Burguer"/>
+          <Tab label="Tudo" />
+          <Tab label="Burguer" />
           <Tab label="Asiática" />
           <Tab label="Árabe" />
           <Tab label="Mexicano" />
@@ -90,11 +114,28 @@ export default function HomeScreen() {
           <Tab label="Petiscos" />
           <Tab label="Doces" />
           <Tab label="Carnes" />
-       </Tabs>
+        </Tabs>
       </Box>
-      <CardsContainer>
-        {restaurantsList}
-      </CardsContainer>
+
+      {loading?
+      
+        <LoadingContainer> 
+          <LoopIcon fontSize='large' color='primary'/>
+          <Typography 
+            variant="h6" 
+            gutterBottom component="div" 
+            sx={{color: theme.palette.primary.main}}
+            >Carregando ...
+            </Typography>
+        </LoadingContainer>
+    
+      :
+        <CardsContainer>
+          {restaurantsList}
+        </CardsContainer>
+      }
+      <Footer />
+
     </div>
-  )
+  );
 }

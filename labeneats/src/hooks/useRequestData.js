@@ -5,7 +5,7 @@ import axios from "axios"
 export const useRequestData = (initialData, url) => {
   let [data, setData] = useState(initialData);
   const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getData = () => {
     axios

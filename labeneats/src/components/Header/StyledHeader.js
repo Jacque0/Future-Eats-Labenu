@@ -9,7 +9,8 @@ width:100%;
 height: 64px;
 
     .BackIcon{
-        margin: 0 0 0 6%;
+        position: absolute;
+        left: 6%;
         width: 8%;
     }
 `
@@ -18,6 +19,7 @@ export const Title = styled.section`
 display: flex;
 align-items: center;
 justify-content: center;
-width: 72%;
+flex-grow: 1;
+text-align: center;
 font-size: larger;
 `

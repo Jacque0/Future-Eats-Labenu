@@ -23,7 +23,7 @@ export const goToHome = (navigate) => {
 }
 
 export const goToRestaurant = (navigate, id) => {
-    navigate(`/restaurant/${id}`)
+    navigate(`/restaurants/${id}`)
 }
 
 export const goToSearch = (navigate) => {

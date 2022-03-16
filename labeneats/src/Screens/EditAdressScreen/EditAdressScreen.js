@@ -1,20 +1,17 @@
 import React from 'react';
 import useProtectedPage from "../../hooks/useProtectedPage";
 import AdressForm from "./AdressForm";
-import backIcon from '../../assets/BackIcon.svg';
-import { MainContainerAdressPage } from "./StyledAdressScreen";
-import { goToProfile } from '../../routes/coordinator';
-import { useNavigate } from 'react-router-dom';
+import { MainContainerAdressPage, Bar } from "./StyledAdressScreen";
+import Header from '../../components/Header/Header';
+
 
 export default function EditAdressScreen() {
     // useProtectedPage()
-    const navigate = useNavigate();
+    
 
     return (
         <MainContainerAdressPage>
-            <div className="Bar">
-                <img src={backIcon} alt='Botão voltar' onClick={() => goToProfile(navigate)}/>
-            </div>
+            <Header backButton={true}  />
             <h3>Meu endereço</h3>
             <AdressForm />
         </MainContainerAdressPage>

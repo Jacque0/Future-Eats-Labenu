@@ -7,28 +7,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
-.Bar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 34px;
-    margin: 0 0 16px;
-    padding: 10px 0 10px;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0.5px 0 0 var(--black-25);
-    background-color: #fff;
-    border-bottom: 1px solid lightgray;
-
-    img{
-        width: 23px;
-        height: 24px;
-        margin: 10px 321px 0 16px;
-        object-fit: contain;
-    }
-}
-
-  h3{
+h3{
       font-weight: normal;
       margin: 16px 0 0;
       padding: 12px 32px;

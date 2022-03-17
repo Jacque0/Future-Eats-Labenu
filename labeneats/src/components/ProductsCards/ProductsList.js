@@ -11,8 +11,6 @@ import theme from "../../constants/theme";
 import { TextContainer, CategoryCard, Hr } from "./styledProductsList";
 
 function ProductsList(props) {
-
-
   const categoriesSource = props.products?.map((item) => {
     return item.category;
   });
@@ -31,8 +29,6 @@ function ProductsList(props) {
     );
   }
 
-
-
   const mappedProductsList = sortedProducts?.map((item, index) => {
     return (
       <CategoryCard key={index}>
@@ -48,6 +44,7 @@ function ProductsList(props) {
                 margin: "auto",
                 marginBottom: 5,
               }}
+              data={item}
               key={item.id}
               category={item.category}
             >
@@ -125,7 +122,6 @@ function ProductsList(props) {
       </CategoryCard>
     );
   });
-
 
   return <div>{mappedProductsList}</div>;
 }

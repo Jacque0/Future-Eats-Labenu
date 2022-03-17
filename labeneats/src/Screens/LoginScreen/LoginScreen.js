@@ -101,6 +101,8 @@ export default function LoginScreen() {
             }
           />
         </FormControl>
+        <span className="space"/>
+
         <LoginButton type="submit" variant="contained">
           {isLoading ? <Loading /> : "Enviar"}
         </LoginButton>

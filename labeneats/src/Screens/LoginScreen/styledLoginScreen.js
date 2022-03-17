@@ -7,7 +7,6 @@ export const PageContainer = styled.div`
   align-items: center;
   height: 100vh;
   animation: waitOpen 4s ease forwards;
-  overflow: hidden;
   .logo {
     width: 104px;
     height: 58px;
@@ -23,6 +22,9 @@ export const PageContainer = styled.div`
     text-align: center;
     margin: 16px 0 0;
     padding: 12px 32px;
+  }
+  .space{
+    margin: 6px;
   }
   @keyframes waitOpen {
     0% {
@@ -46,7 +48,6 @@ export const FormContainer = styled.form`
 `
 
 export const IntroContainer = styled.div`
-  overflow: hidden;
   width: 100vw;
   height: 100vh;
   display: flex;

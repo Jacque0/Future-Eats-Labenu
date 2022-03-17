@@ -12,5 +12,9 @@ export const CardsContainer = styled.div`
 `;
 
 export const CategoryCard = styled.div`
-  
+
+`
+
+export const Hr = styled.hr`
+margin-bottom: 10px
 `

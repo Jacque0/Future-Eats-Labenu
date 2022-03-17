@@ -11,7 +11,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
-import axios from "axios";
+import { postSignUp } from "../../services/initiation";
 
 export default function SignUpForm() {
   const { form, handleChange, clearForm } = useForm({
@@ -25,26 +25,7 @@ export default function SignUpForm() {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const navigate = useNavigate();
-
-  //Colocar na pasta services
-  const postSignUp = (body) => {
-    axios
-      .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureEatsA/signup`,
-        body
-      )
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        clearForm();
-        goToEditAdress(navigate);
-      })
-      .catch((err) => {
-        console.log(err.response);
-        alert(err.response.data.message);
-      });
-  };
-  // Fim da pasta services
-
+  
   const onChangeConfirm = (event) => {
     if (event.target.value === form.password) {
       setErrorPassword(false);
@@ -66,7 +47,7 @@ export default function SignUpForm() {
   };
   const onSubmitForm = (event) => {
     event.preventDefault();
-    postSignUp(form);
+    postSignUp(form, clearForm, navigate);
   };
 
   return (

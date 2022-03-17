@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-import axios from "axios";
-import { BASE_URL } from '../../constants/BASE_URL';
 import { InputText, ButtonEddit } from "./StylesEditProfile";
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router";
-import { goToProfile } from "../../routes/coordinator";
-import useProtectedPage from '../../hooks/useProtectedPage';
 import { putEditProfile } from "../../services/PutRequests";
 import { getProfile } from "../../services/GetRequests";
 
 
 export default function EditProfileForm() {
-    // useProtectedPage()
     const navigate = useNavigate()
 
     const { form, handleChange, clearForm, setForm } = useForm({

@@ -1,15 +1,11 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { BASE_URL } from '../../constants/BASE_URL';
 import { useNavigate } from "react-router";
 import { useForm } from "../../hooks/useForm";
 import { MainContainerFormAdress, ButtonAdressForm, InputsAdressForm } from "./StyledAdressScreen";
-import { goToHome } from "../../routes/coordinator";
 import { addAdress } from "../../services/PutRequests";
 import { getAdress } from "../../services/GetRequests";
 
 const AdressForm = () => {
-    // useProtectedPage()
     const navigate = useNavigate();
 
     const { form, handleChange, clearForm, setForm } = useForm(

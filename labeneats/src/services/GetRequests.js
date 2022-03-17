@@ -13,9 +13,9 @@ export const getProfile = (setForm) => {
         })
         .then((response) => {
             setForm({
-                name: response.data.user.name,
-                email: response.data.user.email,
-                cpf: response.data.user.cpf
+                name: response.data.user?response.data.user.name:"",
+                email: response.data.user?response.data.user.email:"",
+                cpf: response.data.user?response.data.user.cpf:"",
             })
         })
         .catch((err) => {
@@ -34,12 +34,12 @@ export const getAdress = (setForm) => {
         })
         .then((response) => {
             setForm({
-                street: response.data.address.street,
-                number: response.data.address.number,
-                neighbourhood: response.data.address.neighbourhood,
-                city: response.data.address.city,
-                state: response.data.address.state,
-                complement: response.data.address.complement
+                street: response.data.address?response.data.address.street:"",
+                number: response.data.address?response.data.address.number:"",
+                neighbourhood: response.data.address?response.data.address.neighbourhood:"",
+                city: response.data.address?response.data.address.city:"",
+                state: response.data.address?response.data.address.state:"",
+                complement: response.data.address?response.data.address.complement:"",
             })
         })
         .catch((err) => {

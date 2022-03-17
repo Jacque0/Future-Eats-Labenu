@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useForm } from "../../hooks/useForm";
 import { MainContainerFormAdress, ButtonAdressForm, InputsAdressForm } from "./StyledAdressScreen";
@@ -7,6 +7,7 @@ import { getAdress } from "../../services/GetRequests";
 
 const AdressForm = () => {
     const navigate = useNavigate();
+    const [isData, setIsData] = useState(false)
 
     const { form, handleChange, clearForm, setForm } = useForm(
         {
@@ -20,11 +21,11 @@ const AdressForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        addAdress(form, clearForm, navigate);
+        addAdress(form, clearForm, isData, navigate);
     }
 
     useEffect(() => {
-        getAdress(setForm)
+        getAdress(setForm, setIsData)
     }, [])
 
     return (

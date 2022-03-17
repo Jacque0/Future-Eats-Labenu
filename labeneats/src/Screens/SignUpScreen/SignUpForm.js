@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { InputText, ButtonCreate, ContainerButton } from "./styleSingUp";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router";
-import { goToEditAdress } from "../../routes/coordinator";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";

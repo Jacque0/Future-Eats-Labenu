@@ -6,9 +6,11 @@ display:flex;
 align-items:center;
 box-shadow: 0 0.5px 0 0 ${primaryColors.black25};
 width:100%;
-height: 64px;
+height: 34px;
 position: sticky;
 top: 0;
+z-index: 3;
+background-color: white;
     .BackIcon{
         position: absolute;
         left: 16px;

@@ -1,10 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/BASE_URL";
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFxQUVJc1RxVzhkS3ZuaGZIcmhDIiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJjcGYiOiIxMjMuMTExLjExMS0xMSIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBBZm9uc28gQnJheiwgMTc3LCA3MSAtIFZpbGEgTi4gQ29uY2Vpw6fDo28iLCJpYXQiOjE2NDcyNjgzODB9.e56IT7qpgvMsKEBwFHHA6QNP_s94_eNuj5I8HoqeBI4'
-
 export const getProfile = (setForm) => {
-    // const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     axios
         .get(`${BASE_URL}/profile`, {
             headers: {
@@ -19,13 +17,12 @@ export const getProfile = (setForm) => {
             })
         })
         .catch((err) => {
-            alert(err.message)
         })
 }
 
 
-export const getAdress = (setForm) => {
-    // const token = localStorage.getItem('token')
+export const getAdress = (setForm, setIsData) => {
+    const token = localStorage.getItem('token')
     axios
         .get(`${BASE_URL}/profile/address`, {
             headers: {
@@ -41,8 +38,8 @@ export const getAdress = (setForm) => {
                 state: response.data.address?response.data.address.state:"",
                 complement: response.data.address?response.data.address.complement:"",
             })
+            response.data.address&&setIsData(true)
         })
         .catch((err) => {
-            alert(err.message)
         })
 }

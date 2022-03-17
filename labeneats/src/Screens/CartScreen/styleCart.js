@@ -43,6 +43,16 @@ export const Title = styled.div`
   }
 `;
 
+export const RestaurantArea = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  color: #b8b8b8;
+  .title-restaurant{
+    color: #5cb646;
+  }
+`
+
 export const FreteArea = styled.div`
   width: 100%;
   box-sizing: border-box;

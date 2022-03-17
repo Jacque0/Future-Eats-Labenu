@@ -5,7 +5,7 @@ import useProtectedPage from '../../hooks/useProtectedPage';
 import { ContainerEditProfile } from './StylesEditProfile';
 
 export default function EditProfileScreen() {
-  // useProtectedPage()
+  useProtectedPage()
 
   return (
     <ContainerEditProfile>

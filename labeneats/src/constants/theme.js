@@ -8,8 +8,8 @@ const theme = createTheme({
             contrastText: primaryColors.black,
         },
         secondary:{
-            main: primaryColors.black,
-            contrastText: primaryColors.midGreen50
+            main: primaryColors.midGreen50,
+            contrastText: primaryColors.black
         },
         terciary:{
             main: primaryColors.black25

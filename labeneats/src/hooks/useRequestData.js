@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 
-
 export const useRequestData = (initialData, url) => {
   let [data, setData] = useState(initialData);
   const [error, setError] = useState();

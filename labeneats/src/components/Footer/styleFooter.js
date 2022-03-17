@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import { primaryColors } from "../../constants/colors";
 
 export const ContainerFooter = styled.div`
     display: flex;
@@ -9,6 +10,7 @@ export const ContainerFooter = styled.div`
     bottom: 0;
     z-index: 3;
     background-color: white;
+    box-shadow: 0 -0.5px 0 0 ${primaryColors.black25};
 `
 export const ButtonFooter = styled(Button)`
     width: 120px;

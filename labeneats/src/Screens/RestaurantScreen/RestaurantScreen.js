@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailedRestaurantCard from "../../components/DetailedRestaurantCard/DetailedRestaurantCard";
-import { CardsContainer } from "../../components/DetailedRestaurantCard/styledDetailedRestaurantCard";
+
 import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/BASE_URL";
 import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
-import ProductsList from "./ProductsList";
+import ProductsList from "../../components/ProductsCards/ProductsList";
+import { CardsContainer } from "../../components/ProductsCards/styledProductsList";
+
 
 export default function RestaurantScreen() {
   const { setters } = useContext(GlobalStateContext);

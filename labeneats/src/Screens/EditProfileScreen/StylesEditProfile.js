@@ -30,5 +30,5 @@ export const ButtonEddit = styled(Button)`
   height: 42px;
   padding: 12px 16px;
   border-radius: 2px;
-  margin: 8px 0 0;
+  margin: 8px 0 20px;
 `;

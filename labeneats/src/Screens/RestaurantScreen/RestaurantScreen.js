@@ -9,7 +9,7 @@ import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
 import ProductsList from "./ProductsList";
 
 export default function RestaurantScreen() {
-  const { states, setters } = useContext(GlobalStateContext);
+  const { setters } = useContext(GlobalStateContext);
   const [details, setDetails] = useState();
   const params = useParams();
   const token =

@@ -8,91 +8,120 @@ import {
 import Button from "@mui/material/Button";
 import React from "react";
 import theme from "../../constants/theme";
-import { ButtonsContainer, TextContainer } from "./styledProductsList";
+import { TextContainer, CategoryCard } from "./styledProductsList";
 
 function ProductsList(props) {
-  console.log(props);
+  console.log(props.products);
+
   const mappedProductsList = props.products?.map((item) => {
+    const categoriesSource = props.products?.map((item) => {
+      return item.category;
+    });
+
+    const categories = [...new Set(categoriesSource)]
+      .map((category) => {
+        return (
+          <CategoryCard key={category} category={category}>
+            <h2>{category}</h2>
+            <hr />
+          </CategoryCard>
+        );
+      })
+      .filter((item) => {
+        return item.key;
+      });
+
     return (
-      <Card
-        sx={{
-          maxWidth: 345,
-          borderRadius: 3,
-          margin: "auto",
-          marginBottom: 5,
-        }}
-      >
-        <CardActionArea sx={{ display: "flex" }}>
-          <CardMedia
-            component="img"
-            image={item.photoUrl}
-            height="150"
-            alt="Prato"
-            sx={{ width: "96px" }}
-          />
-          <CardContent sx={{ width: "80%" }}>
-            <Typography
-              gutterBottom
-              variant="body1"
-              component="div"
-              color="primary.main"
+      <CategoryCard>
+        {categories}
+        <Card
+          sx={{
+            maxWidth: 345,
+            borderRadius: 3,
+            margin: "auto",
+            marginBottom: 5,
+          }}
+          key={item.id}
+          category={item.category}
+        >
+          <CardActionArea disabled sx={{ display: "flex", height: "112px" }}>
+            <CardMedia
+              component="img"
+              image={item.photoUrl}
+              height="150"
+              alt="Prato"
+              sx={{ width: "96px" }}
+            />
+            <CardContent sx={{ width: "80%" }}>
+              <Typography
+                sx={{
+                  width: "75%",
+                  lineHeight: "12px",
+                }}
+                gutterBottom
+                variant="subtitle2"
+                component="div"
+                color="primary.main"
+              >
+                {item.name}
+              </Typography>
+              <TextContainer>
+                <Typography
+                  variant="body2"
+                  sx={{ color: theme.palette.terciary.main }}
+                >
+                  {item.description}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "black", marginTop: "1px" }}
+                >
+                  R${parseInt(item.price).toFixed(2)}
+                </Typography>
+              </TextContainer>
+            </CardContent>
+            <Button
+              sx={{
+                borderRadius: "0px 8px 0px 8px",
+                height: "31px",
+                border: "1px solid #5cb646",
+                fontSize: "small",
+                color: "primary.main",
+                alignSelf: "flex-start",
+                position: "absolute",
+                left: "272px",
+              }}
+              size="small"
             >
-              <b>{item.name}</b>
-            </Typography>
-            <TextContainer>
-              <Typography
-                variant="body2"
-                sx={{ color: theme.palette.terciary.main }}
-              >
-                {item.description}
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{ color: "black", marginTop: "1vh" }}
-              >
-                R${parseInt(item.price).toFixed(2)}
-              </Typography>
-            </TextContainer>
-          </CardContent>
-          <ButtonsContainer>
-          <Button
-            sx={{
-              borderRadius: "8px 0px 8px 0px",
-              width: "200px",
-              height: "31px",
-              border: "1px solid #5cb646",
-              fontSize: "small",
-              color: "primary.main",
-              alignSelf: "flex-start",
-              justifySelf: "flex-en"
-            }}
-          >
-            1
-          </Button>
-          <Button
-            sx={{
-              borderRadius: "8px 0px 8px 0px",
-              width: "200px",
-              height: "31px",
-              border: "1px solid #5cb646",
-              fontSize: "small",
-              color: "primary.main",
-              alignSelf: "flex-end"
-            }}
-          >
-            adicionar
-          </Button>
-          </ButtonsContainer>
-        </CardActionArea>
-      </Card>
+              1
+            </Button>
+            <Button
+              sx={{
+                borderRadius: "8px 0px 8px 0px",
+                width: "90px",
+                height: "31px",
+                border: "1px solid #5cb646",
+                fontSize: "small",
+                color: "primary.main",
+
+                position: "absolute",
+                left: "247px",
+                top: "82px",
+              }}
+            >
+              adicionar
+            </Button>
+          </CardActionArea>
+        </Card>
+      </CategoryCard>
     );
   });
-  return (
-    <div>
-      ProductsList
-      {mappedProductsList}
-    </div>
-  );
+  /*     .filter((card) => {
+      console.log(card);
+      return card.props.children[1].props.category;
+    }); */
+
+  return <div>{mappedProductsList}</div>;
 }
 
 export default ProductsList;

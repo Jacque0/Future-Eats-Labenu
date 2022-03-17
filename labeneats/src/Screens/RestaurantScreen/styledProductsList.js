@@ -11,10 +11,6 @@ export const CardsContainer = styled.div`
   margin: 20px auto;
 `;
 
-export const ButtonsContainer = styled.div`
-height: 200px;
-border: 1px solid red;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+export const CategoryCard = styled.div`
+  
 `

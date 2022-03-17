@@ -12,5 +12,5 @@ import { useState } from "react"
          setForm(initialState)
      }
 
-     return {form, handleChange, clearForm}
+     return {form, handleChange, clearForm, setForm}
  }

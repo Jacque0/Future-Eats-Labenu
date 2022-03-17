@@ -20,11 +20,11 @@ function DetailedRestaurantCard(props) {
         <CardContent>
           <Typography
             gutterBottom
-            variant="body2"
+            variant="body1"
             component="div"
-            color="secondary.contrastText"
+            color="primary.main"
           >
-            {props.details?.name}
+            <b>{props.details?.name}</b>
           </Typography>
           <TextContainer>
             <Typography

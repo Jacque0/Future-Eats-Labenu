@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const GlobalState = (props) => {
     const [cart, setCart] = useState([])
-    const [idBuy, setIdBuy] = useState('')
+    const [selectedRestaurantId, setSelectedRestaurantId] = useState('')
     
-    const states = {cart, idBuy}
-    const setters = {setCart, setIdBuy}
+    const states = {cart, selectedRestaurantId}
+    const setters = {setCart, setSelectedRestaurantId}
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>

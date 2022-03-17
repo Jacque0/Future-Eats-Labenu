@@ -7,6 +7,7 @@ export const PageContainer = styled.div`
   align-items: center;
   height: 100vh;
   animation: waitOpen 4s ease forwards;
+  overflow: hidden;
   .logo {
     width: 104px;
     height: 58px;

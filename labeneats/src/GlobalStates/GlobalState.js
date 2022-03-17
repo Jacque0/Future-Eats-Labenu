@@ -3,8 +3,9 @@ import GlobalStateContext from "./GlobalStateContext";
 import { useState } from "react";
 
 const GlobalState = (props) => {
-    const states = {}
-    const setters = {}
+    const [selectedRestaurantId, setSelectedRestaurantId] = useState()
+    const states = {selectedRestaurantId}
+    const setters = {setSelectedRestaurantId}
 
     return (
         <GlobalStateContext.Provider value={{states, setters}}>

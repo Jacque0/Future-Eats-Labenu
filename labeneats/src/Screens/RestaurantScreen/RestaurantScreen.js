@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailedRestaurantCard from "../../components/DetailedRestaurantCard/DetailedRestaurantCard";
 import { CardsContainer } from "../../components/DetailedRestaurantCard/styledDetailedRestaurantCard";
+import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/BASE_URL";
+import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
+import ProductsList from "./ProductsList";
 
 export default function RestaurantScreen() {
+  const { states, setters } = useContext(GlobalStateContext);
   const [details, setDetails] = useState();
   const params = useParams();
   const token =
@@ -23,21 +27,24 @@ export default function RestaurantScreen() {
         headers
       );
       setDetails(details.data.restaurant);
-      
+      setters.setSelectedRestaurantId(params.id);
     } catch (error) {
-      console.log(error.response);
+      alert(error.response);
     }
   };
-
-  console.log(details);
-  
   useEffect(() => {
     getRestaurantDetails();
-  },[]);
+  }, []);
 
   return (
-    <CardsContainer>
-      <DetailedRestaurantCard details={details}><h1>{details?.id}</h1></DetailedRestaurantCard>
-    </CardsContainer>
+    <div>
+      <Header backButton={true} title={"Restaurante"} />
+      <CardsContainer>
+        <DetailedRestaurantCard details={details}>
+          <h1>{details?.id}</h1>
+        </DetailedRestaurantCard>
+        <ProductsList products={details?.products}/>
+      </CardsContainer>
+    </div>
   );
 }

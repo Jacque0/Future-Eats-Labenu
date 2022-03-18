@@ -3,7 +3,7 @@ import GlobalStateContext from "./GlobalStateContext";
 import { useState } from "react";
 
 const GlobalState = (props) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState( JSON.parse(localStorage.getItem('cart')) || [])
     const [selectedRestaurantId, setSelectedRestaurantId] = useState('')
     
     const states = {cart, selectedRestaurantId}

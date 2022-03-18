@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Footer from "../../components/Footer/Footer"
 import Header from "../../components/Header/Header"
 import { BASE_URL } from "../../constants/BASE_URL"
@@ -10,8 +10,10 @@ import {
   Container,
 } from "./styledProfileScreen"
 import Loading from "../../assets/Loading"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
+import { goToEditAdress, goToEditProfile } from "../../routes/coordinator"
+import {primaryColors} from "../../constants/colors"
 
 export default function ProfileScreen() {
   const { data, error, loading } = useRequestData(
@@ -28,7 +30,7 @@ export default function ProfileScreen() {
     BASE_URL + "/profile"
   )
 
-  useEffect(() => {})
+  const navigate = useNavigate()
 
   const renderOrderHistory = ""
 
@@ -40,9 +42,7 @@ export default function ProfileScreen() {
           <p>{data.user.email}</p>
           <p>{data.user.cpf}</p>
         </DataContainer>
-        <Link to="/edit-profile">
-          <EditOutlinedIcon />
-        </Link>
+        <EditOutlinedIcon onClick={() => goToEditProfile(navigate)} />
       </Container>
       <Container color>
         <AdressContainer>
@@ -53,9 +53,7 @@ export default function ProfileScreen() {
             <p>Nenhum endereço cadastrado</p>
           )}
         </AdressContainer>
-        <Link to="/edit-address">
-          <EditOutlinedIcon />
-        </Link>
+        <EditOutlinedIcon onClick={() => goToEditAdress(navigate)} />
       </Container>
       <OrderHistoryContainer>
         <span>Histórico de pedidos</span>
@@ -67,7 +65,20 @@ export default function ProfileScreen() {
   return (
     <div>
       <Header backButton={true} title={"Meu perfil"} />
-      {loading ? <Loading /> : renderScreen}
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "70vh",
+          }}
+        >
+          <Loading color={primaryColors.midGreen}/>
+        </div>
+      ) : (
+        renderScreen
+      )}
       <Footer />
     </div>
   )

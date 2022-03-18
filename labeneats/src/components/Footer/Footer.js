@@ -12,16 +12,15 @@ import { goToHome, goToCart, goToProfile } from '../../routes/coordinator'
 export default function Footer() {
     let urlPage = ""  
 
-    let url = window.location.href
-    url = url.split("3000/")
+    const url = window.location.pathname.substr(1)
 
     const navigate = useNavigate()
     
-     if (url[1] === "") {
+     if (url === "") {
       urlPage = "home"
-    } else if (url[1] === "profile") {
+    } else if (url === "profile") {
       urlPage = "profile"
-    }  else if (url[1] === "cart") {
+    }  else if (url === "cart") {
       urlPage = "cart"
     }
 

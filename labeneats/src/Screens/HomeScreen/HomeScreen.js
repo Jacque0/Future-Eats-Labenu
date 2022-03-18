@@ -136,7 +136,13 @@ export default function HomeScreen() {
           )}
         </CardsContainer>
       )}
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

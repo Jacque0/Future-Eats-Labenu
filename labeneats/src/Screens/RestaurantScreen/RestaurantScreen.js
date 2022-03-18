@@ -61,7 +61,13 @@ export default function RestaurantScreen() {
           <ProductsList idRestaurant={params.id} products={details?.products}/>
         </CardsContainer>
       }
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

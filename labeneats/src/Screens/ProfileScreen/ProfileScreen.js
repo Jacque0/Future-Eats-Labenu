@@ -93,7 +93,13 @@ export default function ProfileScreen() {
         Logout
       </LogoutButton>
       <OrderWarning />
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

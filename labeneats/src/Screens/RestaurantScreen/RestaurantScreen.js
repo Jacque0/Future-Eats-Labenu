@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailedRestaurantCard from "../../components/DetailedRestaurantCard/DetailedRestaurantCard";
-
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/BASE_URL";
 import ProductsList from "../../components/ProductsCards/ProductsList";
@@ -61,6 +61,7 @@ export default function RestaurantScreen() {
           <ProductsList idRestaurant={params.id} products={details?.products}/>
         </CardsContainer>
       }
+      <Footer />
     </div>
   );
 }

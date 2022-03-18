@@ -17,6 +17,7 @@ import LoopIcon from "@mui/icons-material/Loop";
 import Typography from "@mui/material/Typography";
 import theme from "../../constants/theme";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import OrderWarning from "../../components/OrderWarning/OrderWarning";
 
 export default function HomeScreen() {
   useProtectedPage();
@@ -138,6 +139,7 @@ export default function HomeScreen() {
           )}
         </CardsContainer>
       )}
+      <OrderWarning/>
       <Footer />
     </div>
   );

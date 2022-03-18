@@ -79,7 +79,7 @@ export default function ProfileScreen() {
             height: "70vh",
           }}
         >
-          <Loading color={primaryColors.midGreen} />
+          <Loading color={primaryColors.midGreen}>carregando...</Loading>
         </div>
       ) : (
         renderScreen

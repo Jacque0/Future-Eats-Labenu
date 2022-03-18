@@ -1,10 +1,11 @@
 # Future Eats
 
+## Site 
+[Future Eats](https://futureeatsa.surge.sh/)
+
 
 ## Descrição do Projeto
 O Future Eats tem por objetivo emular um aplicativo de delivery. Ancorados nos maiores do mercado (Ifood, Uber Eats e Rappi), desenvolvemos o aplicativo seguindo o conceito mobile first e visando sempre à melhor experiência do usuário.
-
-**[Future Eats](https://futureeatsa.surge.sh/)**
 
 
 ## Desenvolvedores

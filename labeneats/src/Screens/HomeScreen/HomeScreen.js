@@ -2,7 +2,7 @@ import React from "react";
 import { useRequestData } from "../../hooks/useRequestData";
 import { BASE_URL } from "../../constants/BASE_URL";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
-import { CardsContainer, LoadingContainer, SearchContainer } from "./styled";
+import { CardsContainer, SearchContainer } from "./styled";
 import { goToSearch } from "../../routes/coordinator";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
@@ -13,10 +13,9 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import LoopIcon from "@mui/icons-material/Loop";
-import Typography from "@mui/material/Typography";
 import theme from "../../constants/theme";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import Loading from "../../assets/Loading";
 
 export default function HomeScreen() {
   useProtectedPage();
@@ -116,17 +115,16 @@ export default function HomeScreen() {
       </Box>
 
       {loading ? (
-        <LoadingContainer>
-          <LoopIcon fontSize="large" color="primary" />
-          <Typography
-            variant="h6"
-            gutterBottom
-            component="div"
-            sx={{ color: theme.palette.primary.main }}
-          >
-            Carregando ...
-          </Typography>
-        </LoadingContainer>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "50vh",
+          }}
+        >
+          <Loading color={theme.palette.primary.main}>Carregando ...</Loading>
+        </div>
       ) : (
         <CardsContainer>
           {error ? (

@@ -42,7 +42,7 @@ export default function CartScreen() {
   const total = cart?.reduce((total, num) => {
     return total + num.price * num.quantity;
   }, 0);
-  const frete = restaurant? restaurant.shipping: 0
+  const frete = (cart.length !== 0 && restaurant) ? restaurant.shipping : 0;
   return (
     <ContainerCart>
       <Header title="Meu carrinho" />
@@ -58,25 +58,26 @@ export default function CartScreen() {
             `${address.street}, ${address.number}`}
         </p>
       </Rectangle>
-      {cart.length === 0 && (
+      {cart.length === 0 ? (
         <Title>
           <p className="Text">Carrinho vazio</p>
         </Title>
-      )}
-      {restaurant && (
-        <RestaurantArea>
-          <p className="title-restaurant">{restaurant.name}</p>
-          <p>{restaurant.address}</p>
-          <p>{restaurant.deliveryTime} min</p>
-        </RestaurantArea>
+      ) : restaurantRequest.loading ? (
+        <Loading color="#5cb646" />
+      ) : (
+        restaurant && (
+          <RestaurantArea>
+            <p className="title-restaurant">{restaurant.name}</p>
+            <p>{restaurant.address}</p>
+            <p>{restaurant.deliveryTime} min</p>
+          </RestaurantArea>
+        )
       )}
       <ContainerProducts>{renderList}</ContainerProducts>
-      <FreteArea>
-        Frete {`R$${frete}.00`}
-      </FreteArea>
+      <FreteArea>Frete {`R$${frete}.00`}</FreteArea>
       <SubTotalArea>
         <span>SUBTOTAL</span>
-        <span className="text-green">R${(total+frete).toFixed(2)}</span>
+        <span className="text-green">R${(total + frete).toFixed(2)}</span>
       </SubTotalArea>
       <CartForm cart={cart} restaurantId={selectedRestaurantId} />
       <Footer />

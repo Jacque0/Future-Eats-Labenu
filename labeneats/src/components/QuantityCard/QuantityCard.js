@@ -1,26 +1,27 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { ButtonAdd, ContainerQuantity, Rectangle } from "./styleQuantity";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-export default function QuantityCard({display, setDisplay, addItemToCart}) {
-    const [quantity, setQuantity] = useState(0)
+export default function QuantityCard({ display, setDisplay, addItemToCart }) {
+  const [quantity, setQuantity] = useState(1);
 
-    const handleChange = (event) => {
-        setQuantity(event.target.value);
-      };
-    
-    const onClickAdd = () => {
-        setDisplay(false)
-        addItemToCart(quantity)
-    }
+  const handleChange = (event) => {
+    setQuantity(event.target.value);
+  };
+
+  const onClickAdd = (event) => {
+    event.preventDefault();
+    setDisplay(false);
+    addItemToCart(quantity);
+  };
 
   return (
     <ContainerQuantity display={display}>
       <Rectangle>
-          <p>Selecione a quantidade desejada</p>
+        <p>Selecione a quantidade desejada</p>
         <FormControl fullWidth>
           <InputLabel id="select-label">Quantidade</InputLabel>
           <Select
@@ -42,7 +43,9 @@ export default function QuantityCard({display, setDisplay, addItemToCart}) {
             <MenuItem value={10}>10</MenuItem>
           </Select>
         </FormControl>
-        <ButtonAdd onClick={onClickAdd} variant="text">Adicionar</ButtonAdd>
+        <ButtonAdd onClick={onClickAdd} type="submit" variant="text">
+          Adicionar
+        </ButtonAdd>
       </Rectangle>
     </ContainerQuantity>
   );

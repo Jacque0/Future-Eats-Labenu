@@ -6,15 +6,13 @@ const Container = styled.div`
   align-items: center;
   font-size: 1.3em;
   color: ${props => props.color ? props.color : 'black'};
-  p{
-    margin: 6px;
-  }
 `
 
 const Icon = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  margin: 6px;
   border: 2px solid ${props => props.color ? props.color : 'black'};
   border-bottom-color: transparent;
   border-left-color: transparent;

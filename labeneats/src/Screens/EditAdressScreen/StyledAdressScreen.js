@@ -2,10 +2,16 @@ import styled from "styled-components";
 import { Button, TextField } from '@mui/material';
 
 export const MainContainerAdressPage = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+ 
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 
 h3{
       font-weight: normal;
@@ -18,14 +24,12 @@ export const MainContainerFormAdress = styled.div`
   form{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 65vh;
   }
 `
 
 export const ButtonAdressForm = styled(Button)`
   width: 328px;
+  max-width: 85vw;
   height: 42px;
   padding: 12px 16px;
   border-radius: 2px;
@@ -33,6 +37,7 @@ export const ButtonAdressForm = styled(Button)`
 
 export const InputsAdressForm = styled(TextField)`
   width: 328px;
+  max-width: 85vw;
   height: 56px;
   margin: 8px 0 0;
   padding: 19px 48px 19px 16px;

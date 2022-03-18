@@ -8,6 +8,9 @@ export const SearchContainer = styled.div`
 export const CardsContainer = styled.div`
     width: 90%;
     margin: 20px auto;
+    .address{
+        text-align: center;
+    }
 `
 export const LoadingContainer = styled.div`
     display: flex;

@@ -6,9 +6,8 @@ import Header from '../../components/Header/Header';
 
 
 export default function EditAdressScreen() {
-    // useProtectedPage()
+    useProtectedPage()
     
-
     return (
         <MainContainerAdressPage>
             <Header backButton={true}  />

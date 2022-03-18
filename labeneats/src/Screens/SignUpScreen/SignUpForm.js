@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { InputText, ButtonCreate, ContainerButton } from "./styleSingUp";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router";
-import { goToEditAdress } from "../../routes/coordinator";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
@@ -24,9 +23,11 @@ export default function SignUpForm() {
   const [helperText, setHelperText] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [valueConfirm, setValueConfirm] = useState('')
   const navigate = useNavigate();
   
   const onChangeConfirm = (event) => {
+    setValueConfirm(event.target.value)
     if (event.target.value === form.password) {
       setErrorPassword(false);
       setHelperText("");
@@ -35,6 +36,17 @@ export default function SignUpForm() {
       setHelperText("Deve ser a mesma que a anterior");
     }
   };
+
+  const onChangePassword = (event) => {
+    handleChange(event)
+    if (event.target.value === valueConfirm) {
+      setErrorPassword(false);
+      setHelperText("");
+    } else {
+      setErrorPassword(true);
+      setHelperText("Deve ser a mesma que a anterior");
+    }
+  }
 
   const handleClickShowPassword1 = () => {
     setShowPassword1(!showPassword1);
@@ -91,7 +103,7 @@ export default function SignUpForm() {
           required
           value={form.password}
           name="password"
-          onChange={handleChange}
+          onChange={onChangePassword}
           label="Senha"
           placeholder="Mínimo 6 caracteres"
           type={showPassword1 ? "text" : "password"}
@@ -122,6 +134,7 @@ export default function SignUpForm() {
           required
           error={errorPassword}
           onChange={onChangeConfirm}
+          value={valueConfirm}
           label="Confirmar"
           placeholder="Confirme a senha anterior"
           type={showPassword2 ? "text" : "password"}

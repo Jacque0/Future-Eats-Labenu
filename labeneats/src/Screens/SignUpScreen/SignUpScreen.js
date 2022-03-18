@@ -6,7 +6,7 @@ import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import Header from '../../components/Header/Header'
 
 export default function SignUpScreen() {
-  // useUnprotectedPage();
+  useUnprotectedPage();
   
   return (
     <ContainerSingUp>

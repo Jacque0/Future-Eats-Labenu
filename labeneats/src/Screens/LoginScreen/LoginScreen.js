@@ -51,8 +51,10 @@ export default function LoginScreen() {
       })
   }
 
+
+
   useEffect(() => {
-    setTimeout(() => localStorage.getItem("token") && goToHome(navigate), 3700)
+    setTimeout(() => localStorage.getItem("token") && goToHome(navigate), 4000)
   }, [])
 
   const renderPage = (

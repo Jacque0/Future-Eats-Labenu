@@ -13,9 +13,7 @@ export default function Footer() {
     let urlPage = ""  
 
     let url = window.location.href
-    console.log(url)
     url = url.split("3000/")
-    console.log(url[1])
 
     const navigate = useNavigate()
     

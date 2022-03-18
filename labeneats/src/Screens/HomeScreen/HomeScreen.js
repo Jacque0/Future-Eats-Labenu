@@ -1,35 +1,33 @@
-import React from 'react'
-import { useRequestData } from '../../hooks/useRequestData'
-import { BASE_URL } from '../../constants/BASE_URL'
-import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { CardsContainer, LoadingContainer, SearchContainer } from './styled'
-import { goToSearch } from '../../routes/coordinator'
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
-import SearchIcon from '@mui/icons-material/Search';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router-dom'
-import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
-import LoopIcon from '@mui/icons-material/Loop';
-import Typography from '@mui/material/Typography';
-import theme from '../../constants/theme'
-
+import React from "react";
+import { useRequestData } from "../../hooks/useRequestData";
+import { BASE_URL } from "../../constants/BASE_URL";
+import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
+import { CardsContainer, LoadingContainer, SearchContainer } from "./styled";
+import { goToSearch } from "../../routes/coordinator";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import LoopIcon from "@mui/icons-material/Loop";
+import Typography from "@mui/material/Typography";
+import theme from "../../constants/theme";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 export default function HomeScreen() {
-  /*  useProtectedPage() */
+  useProtectedPage();
 
   const navigate = useNavigate();
 
+  const data = useRequestData([], `${BASE_URL}/restaurants`);
 
-  const data = useRequestData([], `${BASE_URL}/restaurants`)
-
-  const restaurants = data.data.restaurants
-  const loading = data.loading
-  console.log(loading)
-
+  const restaurants = data.data.restaurants;
+  const loading = data.loading;
+  const error = data.error;
 
   const [valueCategory, setValueCategory] = React.useState(0);
 
@@ -117,25 +115,30 @@ export default function HomeScreen() {
         </Tabs>
       </Box>
 
-      {loading?
-      
-        <LoadingContainer> 
-          <LoopIcon fontSize='large' color='primary'/>
-          <Typography 
-            variant="h6" 
-            gutterBottom component="div" 
-            sx={{color: theme.palette.primary.main}}
-            >Carregando ...
-            </Typography>
+      {loading ? (
+        <LoadingContainer>
+          <LoopIcon fontSize="large" color="primary" />
+          <Typography
+            variant="h6"
+            gutterBottom
+            component="div"
+            sx={{ color: theme.palette.primary.main }}
+          >
+            Carregando ...
+          </Typography>
         </LoadingContainer>
-    
-      :
+      ) : (
         <CardsContainer>
-          {restaurantsList}
+          {error ? (
+            <p className="address">
+              Cadastre seu endereço para ver os restaurantes da sua localidade!
+            </p>
+          ) : (
+            restaurantsList
+          )}
         </CardsContainer>
-      }
+      )}
       <Footer />
-
     </div>
   );
 }

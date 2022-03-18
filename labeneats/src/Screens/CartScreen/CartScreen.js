@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Header from "../../components/Header/Header";
 import {
   ContainerCart,
+  ContainerProducts,
   FreteArea,
   Rectangle,
   RestaurantArea,
@@ -15,9 +16,10 @@ import Footer from "../../components/Footer/Footer";
 import CartForm from "./CartForm";
 import Loading from "../../assets/Loading";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 export default function CartScreen() {
-  useProtectedPage()
+  useProtectedPage();
 
   const { states } = useContext(GlobalStateContext);
   const { cart, selectedRestaurantId } = states;
@@ -34,9 +36,13 @@ export default function CartScreen() {
   const renderList =
     cart &&
     cart.map((item) => {
-      return <h1 key={item}>{item}</h1>;
+      return <ProductCard key={item.id} product={item} />;
     });
 
+  const total = cart?.reduce((total, num) => {
+    return total + num.price * num.quantity;
+  }, 0);
+  const frete = restaurant? restaurant.shipping: 0
   return (
     <ContainerCart>
       <Header title="Meu carrinho" />
@@ -44,8 +50,12 @@ export default function CartScreen() {
         <p className="delivery-address">Endereço de entrega</p>
         <p className="address">
           {addressRequest.loading && <Loading color="black" />}
-          {!addressRequest.loading && addressRequest.error && "Endereço não cadastrado"}
-          {!addressRequest.loading && address && `${address.street}, ${address.number}`}
+          {!addressRequest.loading &&
+            addressRequest.error &&
+            "Endereço não cadastrado"}
+          {!addressRequest.loading &&
+            address &&
+            `${address.street}, ${address.number}`}
         </p>
       </Rectangle>
       {cart.length === 0 && (
@@ -60,13 +70,13 @@ export default function CartScreen() {
           <p>{restaurant.deliveryTime} min</p>
         </RestaurantArea>
       )}
-      {renderList}
+      <ContainerProducts>{renderList}</ContainerProducts>
       <FreteArea>
-        Frete {restaurant ? `R$${restaurant.shipping},00` : "R$0,00"}
+        Frete {`R$${frete}.00`}
       </FreteArea>
       <SubTotalArea>
         <span>SUBTOTAL</span>
-        <span className="text-green">R$0,00</span>
+        <span className="text-green">R${(total+frete).toFixed(2)}</span>
       </SubTotalArea>
       <CartForm cart={cart} restaurantId={selectedRestaurantId} />
       <Footer />

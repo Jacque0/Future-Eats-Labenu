@@ -3,7 +3,9 @@ import { Button } from "@mui/material";
 
 export const CardContainer = styled.div`
   width: 328px;
+  max-width: 100%;
   height: 112px;
+  box-sizing: border-box;
   margin: 7px 0;
   border-radius: 8px;
   border: solid 1px #b8b8b8;

@@ -13,7 +13,8 @@ import Loading from "../../assets/Loading"
 import { useNavigate } from "react-router-dom"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
 import { goToEditAdress, goToEditProfile } from "../../routes/coordinator"
-import {primaryColors} from "../../constants/colors"
+import { primaryColors } from "../../constants/colors"
+import OrderHistory from "./OrderHistory"
 
 export default function ProfileScreen() {
   const { data, error, loading } = useRequestData(
@@ -31,8 +32,6 @@ export default function ProfileScreen() {
   )
 
   const navigate = useNavigate()
-
-  const renderOrderHistory = ""
 
   const renderScreen = (
     <>
@@ -57,7 +56,7 @@ export default function ProfileScreen() {
       </Container>
       <OrderHistoryContainer>
         <span>Histórico de pedidos</span>
-        {renderOrderHistory}
+<OrderHistory/>
       </OrderHistoryContainer>
     </>
   )
@@ -74,7 +73,7 @@ export default function ProfileScreen() {
             height: "70vh",
           }}
         >
-          <Loading color={primaryColors.midGreen}/>
+          <Loading color={primaryColors.midGreen} />
         </div>
       ) : (
         renderScreen

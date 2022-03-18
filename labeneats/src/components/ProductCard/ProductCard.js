@@ -9,7 +9,7 @@ import QuantityCard from "../QuantityCard/QuantityCard";
 import { ButtonAdd, ButtonArea, CardContainer, Img } from "./styleCard";
 import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, idRestaurant }) {
   const [displayQuantity, setDisplayQuantity] = useState(false)
   const { states, setters } = useContext(GlobalStateContext);
 
@@ -29,11 +29,19 @@ export default function ProductCard({ product }) {
   const addOrRemoveCart = () => {
     const newCart = [...states.cart]
     if (index === -1){
-      setDisplayQuantity(true)}
+      if (states.cart.length !==0 && (states.selectedRestaurantId!==idRestaurant) ){
+        if (window.confirm('Deseja esvaziar o carrinho?')){
+          setters.setCart([])
+          localStorage.setItem('cart', JSON.stringify([]))
+          setDisplayQuantity(true)
+        }
+      }else{setDisplayQuantity(true)}
+      }
     else {
       newCart.splice(index,1)
+      setters.setCart(newCart)
+      localStorage.setItem('cart', JSON.stringify(newCart))
     }
-    setters.setCart(newCart)
   }
 
   const addItemToCart = (quantity) => {
@@ -41,12 +49,14 @@ export default function ProductCard({ product }) {
     const cartItem = {...product, quantity: quantity}
     newCart.push(cartItem)
     setters.setCart(newCart)
+    localStorage.setItem('cart', JSON.stringify(newCart))
+    setters.setSelectedRestaurantId(idRestaurant)
   };
 
   return (
     <CardContainer>
       <Img src={product.photoUrl} />
-      <CardContent sx={{ width: "80%" }}>
+      <CardContent sx={{ width: "80%", maxHeight: "90%"}}>
         <Typography
           sx={{
             width: "75%",
@@ -66,7 +76,7 @@ export default function ProductCard({ product }) {
           >
             {product.description}
           </Typography>
-          <Typography variant="h6" sx={{ color: "black", marginTop: "1px" }}>
+          <Typography variant="h6" sx={{ color: "black", marginTop: "1px", marginBottom: "1px", fontSize: '16px' }}>
             R${product.price.toFixed(2)}
           </Typography>
         </TextContainer>

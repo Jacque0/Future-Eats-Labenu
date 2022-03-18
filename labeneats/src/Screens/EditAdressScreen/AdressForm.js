@@ -7,6 +7,7 @@ import { getAdress } from "../../services/GetRequests";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { useRequestData } from "../../hooks/useRequestData";
 import MessageBox from "../../components/messageBox";
+import ConfirmBox from "../../components/ConfirmBox";
 
 const AdressForm = () => {
     const navigate = useNavigate();
@@ -110,12 +111,15 @@ const AdressForm = () => {
                     Salvar
                 </ButtonAdressForm>
             </form>
-            {!hasAddress &&
+            <ConfirmBox>
+                LeroLero
+            </ConfirmBox>
+            {/* {!hasAddress &&
                 <MessageBox
                     severity={'error'}
                     title={'Informação'}
                     message={`É necessário informar seu endereço para usufruir corretamente \
-                    do Future Eats. Você pode editar seus dados em seu perfil a qualquer momento.`} />}
+                    do Future Eats. Você pode editar seus dados em seu perfil a qualquer momento.`} />} */}
         </MainContainerFormAdress>
     )
 }

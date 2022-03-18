@@ -14,7 +14,7 @@ export default function ConfirmBox({ title, message }) {
    
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="" onClick={handleClickOpen}>
                 Englobar texto clicável aqui
             </Button>
             <Dialog

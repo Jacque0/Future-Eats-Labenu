@@ -4,10 +4,14 @@ import { useForm } from "../../hooks/useForm";
 import { MainContainerFormAdress, ButtonAdressForm, InputsAdressForm } from "./StyledAdressScreen";
 import { addAdress } from "../../services/PutRequests";
 import { getAdress } from "../../services/GetRequests";
+import { BASE_URL } from "../../constants/BASE_URL";
+import { useRequestData } from "../../hooks/useRequestData";
+import MessageBox from "../../components/messageBox";
 
 const AdressForm = () => {
     const navigate = useNavigate();
-    const [isData, setIsData] = useState(false)
+    const data = useRequestData({}, `${BASE_URL}/profile`)
+    const hasAddress = data.data.user?data.data.user.hasAddress:true
 
     const { form, handleChange, clearForm, setForm } = useForm(
         {
@@ -21,11 +25,11 @@ const AdressForm = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        addAdress(form, clearForm, isData, navigate);
+        addAdress(form, clearForm, hasAddress, navigate);
     }
 
     useEffect(() => {
-        getAdress(setForm, setIsData)
+        getAdress(setForm)
     }, [])
 
     return (
@@ -106,6 +110,12 @@ const AdressForm = () => {
                     Salvar
                 </ButtonAdressForm>
             </form>
+            {!hasAddress &&
+                <MessageBox
+                    severity={'error'}
+                    title={'Informação'}
+                    message={`É necessário informar seu endereço para usufruir corretamente \
+                    do Future Eats. Você pode editar seus dados em seu perfil a qualquer momento.`} />}
         </MainContainerFormAdress>
     )
 }

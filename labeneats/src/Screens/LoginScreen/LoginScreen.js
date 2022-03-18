@@ -41,7 +41,6 @@ export default function LoginScreen() {
       .then((res) => {
         localStorage.setItem("token", res.data.token)
         clearForm()
-        console.log(res.data.user)
         res.data.user.hasAddress ? goToHome(navigate) : goToEditAdress(navigate)
       })
       .catch((err) => {

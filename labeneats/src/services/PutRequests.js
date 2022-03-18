@@ -29,7 +29,6 @@ export const putEditProfile = (body, clearForm, navigate) => {
                 auth: token
             }})
         .then((res) => {
-            localStorage.setItem('token', res.data.token)
             clearForm()
             goToProfile(navigate)
         })

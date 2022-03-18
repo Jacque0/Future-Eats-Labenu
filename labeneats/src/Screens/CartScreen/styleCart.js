@@ -8,7 +8,6 @@ export const ContainerCart = styled.div`
   flex-direction: column;
   height: calc(100vh - 49px);
   box-sizing: border-box;
-  padding-bottom: 16px;
 `;
 
 export const Rectangle = styled.div`
@@ -80,6 +79,7 @@ export const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 65px;
 `;
 
 export const PaymentTitle = styled.p`
@@ -93,3 +93,11 @@ export const ConfirmeButton = styled(Button)`
   border-radius: 2px;
   background-color: #5cb646;
 `;
+
+export const ContainerProducts = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+`

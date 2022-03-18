@@ -6,7 +6,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime"
 
 export default function OrderWarning() {
   const { data, error, loading } = useRequestData(
-    { order: {} },
+    {},
     BASE_URL + "/active-order"
   )
 
@@ -15,11 +15,11 @@ export default function OrderWarning() {
       <AccessTimeIcon className="icon" />
       <OrderContainer>
         <p className="orderTitle">Pedido em andamento</p>
-        <p className="orderRestaurant">{data?.order.restaurantName}</p>
-        <p className="orderPrice">TOTAL R${data?.order.totalPrice}</p>
+        <p className="orderRestaurant">{data.order?.restaurantName}</p>
+        <p className="orderPrice">TOTAL R${data.order?.totalPrice}</p>
       </OrderContainer>
     </Container>
   )
 
-  return <>{data.order.restaurantName ? renderWarning : <></>}</>
+  return <>{data.order ? renderWarning : <></>}</>
 }

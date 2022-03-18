@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 const useConfirmBox = (confirm) => {
     const [open, setOpen] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = (event, reason) => {
         if (reason === "clickaway") {
             return;
@@ -21,6 +17,6 @@ const useConfirmBox = (confirm) => {
         }
     }, [confirm]);
 
-    return [open, handleClickOpen, handleClose]
+    return [open, handleClose]
 };
 export default useConfirmBox;

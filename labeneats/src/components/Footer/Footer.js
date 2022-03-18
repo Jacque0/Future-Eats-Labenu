@@ -6,7 +6,7 @@ import profileGray from '../../assets/profileGray.svg'
 import cartGreen from '../../assets/cartGreen.svg'
 import cartGray from '../../assets/cartGray.svg'
 import { ButtonFooter, ContainerFooter } from './styleFooter';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { goToHome, goToCart, goToProfile } from '../../routes/coordinator'
 
 export default function Footer() {

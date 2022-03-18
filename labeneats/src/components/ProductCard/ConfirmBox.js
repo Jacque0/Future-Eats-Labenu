@@ -1,42 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import useConfirmBox from "../hooks/useConfirmBox";
+import useConfirmBox from "../../hooks/useConfirmBox";
 import ListItem from '@mui/material/ListItem';
 
-export default function ConfirmBox({ title, message }) {
-    const [open, handleClickOpen, handleClose] = useConfirmBox();
-    const [itemClick, setItemClick] = React.useState()
+export default function ConfirmBox({ setDisplayQuantity, setCart }) {
+    const [open, handleClose] = useConfirmBox(true);
+
+    const isTrue = () =>{
+        setDisplayQuantity(true)
+        setCart([])
+        localStorage.setItem('cart', JSON.stringify([]))
+    }
    
     return (
         <div>
-            <Button variant="" onClick={handleClickOpen}>
-                Englobar texto clicável aqui
-            </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
             >
                 <DialogTitle>
-                    {title}
+                    Ops!
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        {message}
+                        Deseja trocar de restaurante? Seu carrinho será esvaziado.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <ListItem autoFocus button onClick={() => setItemClick('true')}>
+                    <ListItem autoFocus button onClick={isTrue}>
                         <Button
                             onClick={handleClose}>
                             Sim
                         </Button>
                     </ListItem>
-                    <ListItem autoFocus button onClick={() => setItemClick('false')}>
+                    <ListItem autoFocus button >
                         <Button
                             onClick={handleClose}
                             autoFocus>

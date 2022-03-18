@@ -76,10 +76,10 @@ export default function CartScreen() {
       <ContainerProducts>{renderList}</ContainerProducts>
       <FreteArea>Frete {`R$${frete}.00`}</FreteArea>
       <SubTotalArea>
-        <span>SUBTOTAL</span>
+        <span>TOTAL</span>
         <span className="text-green">R${(total + frete).toFixed(2)}</span>
       </SubTotalArea>
-      <CartForm cart={cart} restaurantId={selectedRestaurantId} />
+      <CartForm restaurantId={selectedRestaurantId} deliveryTime={restaurant?.deliveryTime} />
       <Footer />
     </ContainerCart>
   );

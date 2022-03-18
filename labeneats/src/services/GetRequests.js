@@ -21,7 +21,7 @@ export const getProfile = (setForm) => {
 }
 
 
-export const getAdress = (setForm, setIsData) => {
+export const getAdress = (setForm) => {
     const token = localStorage.getItem('token')
     axios
         .get(`${BASE_URL}/profile/address`, {
@@ -38,7 +38,6 @@ export const getAdress = (setForm, setIsData) => {
                 state: response.data.address?response.data.address.state:"",
                 complement: response.data.address?response.data.address.complement:"",
             })
-            response.data.address&&setIsData(true)
         })
         .catch((err) => {
         })

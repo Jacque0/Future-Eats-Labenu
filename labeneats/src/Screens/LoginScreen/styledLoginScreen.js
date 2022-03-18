@@ -22,7 +22,11 @@ export const PageContainer = styled.div`
     text-align: center;
     margin: 16px 0 0;
     padding: 12px 32px;
-  }  @keyframes waitOpen {
+  }
+  .space{
+    margin: 6px;
+  }
+  @keyframes waitOpen {
     0% {
       opacity: 0;
       visibility: hidden;
@@ -56,16 +60,25 @@ export const IntroContainer = styled.div`
     width: 126px;
     height: 65px;
     object-fit: contain;
-    animation: loading 2s ease-in-out infinite;
+    animation: loading 4s ease-in-out infinite;
     @keyframes loading {
       0% {
         transform: scale(1);
       }
-      50% {
+      25% {
         transform: scale(1.07);
       }
-      100% {
+      50% {
         transform: scale(1);
+      }
+      75% {
+        transform: scale(1.07);
+      }
+      90% {
+        transform: scale(1);
+      }
+      100%{
+        transform: scale(4);
       }
     }
   }
@@ -76,19 +89,16 @@ export const IntroContainer = styled.div`
     }
     90% {
       opacity: 100;
-      transform: scale(1);
       visibility: visible;
       display: flex;
     }
     99% {
       opacity: 0;
-      transform: scale(4);
       visibility: hidden;
       display: none;
     }
     100% {
       opacity: 0;
-      transform: scale(1);
       visibility: hidden;
       display: none;
     }

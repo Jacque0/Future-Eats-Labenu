@@ -9,7 +9,13 @@ import {
 import whiteLogo from "../../assets/white-logo.png"
 import logo from "../../assets/logo.png"
 import { useForm } from "../../hooks/useForm"
-import { IconButton, InputAdornment } from "@mui/material"
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { BASE_URL } from "../../constants/BASE_URL"
 import axios from "axios"
@@ -35,7 +41,6 @@ export default function LoginScreen() {
       .then((res) => {
         localStorage.setItem("token", res.data.token)
         clearForm()
-        console.log(res.data.user)
         res.data.user.hasAddress ? goToHome(navigate) : goToEditAdress(navigate)
       })
       .catch((err) => {
@@ -68,31 +73,37 @@ export default function LoginScreen() {
           label="E-mail"
           margin="dense"
         />
-        <LoginInput
-          required
-          name="password"
-          placeholder="Senha"
-          type={showPassword === "text" ? "text" : "password"}
-          value={form.password}
-          onChange={handleChange}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() =>
-                  showPassword === "text"
-                    ? setShowPassword("password")
-                    : setShowPassword("text")
-                }
-                edge="end"
-              >
-                {showPassword === "text" ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Senha"
-          margin="dense"
-        />
+        <FormControl sx={{ marginTop: 1.1 }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Senha *</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            required
+            value={form.password}
+            name="password"
+            onChange={handleChange}
+            label="Senha"
+            placeholder="Mínimo 6 caracteres"
+            type={showPassword === 'text' ? "text" : "password"}
+            margin="dense"
+            inputProps={{ pattern: "^.{6,}$" }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() =>
+                    showPassword === "text"
+                      ? setShowPassword("password")
+                      : setShowPassword("text")
+                  }
+                  edge="end"
+                >
+                  {showPassword === 'text' ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <span className="space"/>
+
         <LoginButton type="submit" variant="contained">
           {isLoading ? <Loading /> : "Enviar"}
         </LoginButton>

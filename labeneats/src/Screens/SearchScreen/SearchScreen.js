@@ -8,9 +8,10 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
 import Header from '../../components/Header/Header'
+import useProtectedPage from '../../hooks/useProtectedPage'
 
 export default function SearchScreen() {
- /*  useProtectedPage() */
+  useProtectedPage();
 
   const restaurants = useRequestData([], `${BASE_URL}/restaurants`).data.restaurants
 
@@ -31,6 +32,7 @@ export default function SearchScreen() {
   }).map(restaurant => {
     return <RestaurantCard
             key = {restaurant.id}
+            id = {restaurant.id}
             logoUrl ={restaurant.logoUrl} 
             name={restaurant.name} 
             shipping={restaurant.shipping} 

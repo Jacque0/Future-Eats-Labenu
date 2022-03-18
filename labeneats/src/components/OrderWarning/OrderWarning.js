@@ -5,7 +5,7 @@ import { Container, OrderContainer } from "./styledOrderWarning"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 
 export default function OrderWarning() {
-  const { data, error, loading } = useRequestData(
+  const { data } = useRequestData(
     {},
     BASE_URL + "/active-order"
   )
@@ -16,7 +16,7 @@ export default function OrderWarning() {
       <OrderContainer>
         <p className="orderTitle">Pedido em andamento</p>
         <p className="orderRestaurant">{data.order?.restaurantName}</p>
-        <p className="orderPrice">TOTAL R${data.order?.totalPrice}</p>
+        <p className="orderPrice">TOTAL R${data.order?.totalPrice.toFixed(2)}</p>
       </OrderContainer>
     </Container>
   )

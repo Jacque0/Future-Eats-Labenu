@@ -2,9 +2,9 @@ import axios from 'axios'
 import { BASE_URL } from '../constants/BASE_URL';
 import { goToEditAdress } from '../routes/coordinator';
 
-//Inserir a integração de login aqui
 
-export const postSignUp = (body, clearForm, navigate) => {
+
+export const postSignUp = (body, clearForm, navigate, setError) => {
     axios
       .post(
         `${BASE_URL}/signup`,
@@ -16,6 +16,6 @@ export const postSignUp = (body, clearForm, navigate) => {
         goToEditAdress(navigate);
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        setError(err.response.data.message);
       });
   };

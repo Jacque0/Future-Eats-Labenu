@@ -1,17 +1,18 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/BASE_URL";
 
-export const placeOrder = (body, restaurantId, setCart) => {
+export const placeOrder = (body, restaurantId, setCart, setError, setSuccess) => {
   const headers = {
     auth: localStorage.getItem("token"),
   };
   axios
     .post(`${BASE_URL}/restaurants/${restaurantId}/order`, body, { headers })
     .then((resp) => {
-      alert("Pedido realizado")
-      setCart([]);
+      setSuccess("Pedido realizado")
+      setCart([])
+      localStorage.setItem('cart', []);
     })
     .catch((err) => {
-      alert(err.response.data.message);
+      setError(err.response.data.message);
     });
 };

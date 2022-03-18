@@ -8,10 +8,12 @@ import { TextContainer } from "../ProductsCards/styledProductsList";
 import QuantityCard from "../QuantityCard/QuantityCard";
 import { ButtonAdd, ButtonArea, CardContainer, Img } from "./styleCard";
 import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
+import ConfirmBox from "./ConfirmBox";
 
 export default function ProductCard({ product, idRestaurant }) {
   const [displayQuantity, setDisplayQuantity] = useState(false)
   const { states, setters } = useContext(GlobalStateContext);
+  const [openConfirm, setOpenConfirm] = useState(false)
 
   const index = states.cart.findIndex((i) => {
     return i.id === product.id;
@@ -30,11 +32,7 @@ export default function ProductCard({ product, idRestaurant }) {
     const newCart = [...states.cart]
     if (index === -1){
       if (states.cart.length !==0 && (states.selectedRestaurantId!==idRestaurant) ){
-        if (window.confirm('Deseja esvaziar o carrinho?')){
-          setters.setCart([])
-          localStorage.setItem('cart', JSON.stringify([]))
-          setDisplayQuantity(true)
-        }
+        setOpenConfirm(true)
       }else{setDisplayQuantity(true)}
       }
     else {
@@ -51,6 +49,7 @@ export default function ProductCard({ product, idRestaurant }) {
     setters.setCart(newCart)
     localStorage.setItem('cart', JSON.stringify(newCart))
     setters.setSelectedRestaurantId(idRestaurant)
+    localStorage.setItem('restaurantId', JSON.stringify(idRestaurant))
   };
 
   return (
@@ -94,6 +93,7 @@ export default function ProductCard({ product, idRestaurant }) {
         </ButtonAdd>
       </ButtonArea>
       <QuantityCard addItemToCart={addItemToCart} display={displayQuantity} setDisplay={setDisplayQuantity} />
+      {openConfirm && <ConfirmBox setCart={setters.setCart} setDisplayQuantity={setDisplayQuantity}  />}
     </CardContainer>
   );
 }

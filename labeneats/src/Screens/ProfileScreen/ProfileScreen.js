@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/BASE_URL";
@@ -20,9 +20,10 @@ import {
 } from "../../routes/coordinator";
 import { primaryColors } from "../../constants/colors";
 import HistoryCard from "../../components/HistoryCard/HistoryCard";
+import OrderWarning from "../../components/OrderWarning/OrderWarning";
 
 export default function ProfileScreen() {
-  const { data, error, loading } = useRequestData(
+  const { data, loading } = useRequestData(
     {
       user: {
         id: "",
@@ -91,6 +92,7 @@ export default function ProfileScreen() {
       >
         Logout
       </LogoutButton>
+      <OrderWarning />
       <Footer />
     </div>
   );

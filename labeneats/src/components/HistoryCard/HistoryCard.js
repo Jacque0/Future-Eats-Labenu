@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { OrderCard, TextContainer } from "./styledHistoryCard";
+import MessageBox from "../messageBox";
 
 const HistoryCard = () => {
   const [orders, setOrders] = useState([]);
+  const [error, setError] = useState("");
 
   const getHistory = async () => {
     const headers = {
@@ -16,7 +18,7 @@ const HistoryCard = () => {
       const history = await axios.get(`${BASE_URL}/orders/history`, headers);
       setOrders(history.data.orders);
     } catch (error) {
-      alert(error.response);
+      setError(error.response.data.message);
     }
   };
 
@@ -35,12 +37,23 @@ const HistoryCard = () => {
       </OrderCard>
     );
   });
-  
+
   useEffect(() => {
     getHistory();
   }, []);
 
-  return <div>{mappedHistoryCard}</div>;
+  return (
+    <div>
+      {mappedHistoryCard}
+      {error && (
+        <MessageBox
+          severity={"error"}
+          title={"Algo deu errado"}
+          message={error}
+        />
+      )}
+    </div>
+  );
 };
 
 export default HistoryCard;

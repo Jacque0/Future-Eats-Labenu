@@ -9,12 +9,16 @@ import ProductsList from "../../components/ProductsCards/ProductsList";
 import { CardsContainer } from "../../components/ProductsCards/styledProductsList";
 import Loading from "../../assets/Loading";
 import { primaryColors } from "../../constants/colors";
+import MessageBox from "../../components/messageBox";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 export default function RestaurantScreen() {
+  useProtectedPage()
+
   const [details, setDetails] = useState();
   const params = useParams();
-  const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('')
 
 
   const getRestaurantDetails = async (id) => {
@@ -31,7 +35,7 @@ export default function RestaurantScreen() {
       setDetails(details.data.restaurant);
       setLoading(false)
     } catch (error) {
-      alert(error.response);
+      setError(error.response.data.message);
       setLoading(false)
     }
   };
@@ -68,6 +72,13 @@ export default function RestaurantScreen() {
       >
       <Footer />
       </div>
+      {error && (
+        <MessageBox
+          severity={"error"}
+          title={"Algo deu errado"}
+          message={error}
+        />
+      )}
     </div>
   );
 }

@@ -8,13 +8,19 @@ import {
   AdressContainer,
   OrderHistoryContainer,
   Container,
+  LogoutButton,
 } from "./styledProfileScreen"
 import Loading from "../../assets/Loading"
 import { useNavigate } from "react-router-dom"
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
-import { goToEditAdress, goToEditProfile } from "../../routes/coordinator"
+import {
+  goToEditAdress,
+  goToEditProfile,
+  goToLogin,
+} from "../../routes/coordinator"
 import { primaryColors } from "../../constants/colors"
 import OrderHistory from "./OrderHistory"
+import { Button } from "@mui/material"
 
 export default function ProfileScreen() {
   const { data, error, loading } = useRequestData(
@@ -56,7 +62,7 @@ export default function ProfileScreen() {
       </Container>
       <OrderHistoryContainer>
         <span>Histórico de pedidos</span>
-<OrderHistory/>
+        <OrderHistory />
       </OrderHistoryContainer>
     </>
   )
@@ -78,6 +84,14 @@ export default function ProfileScreen() {
       ) : (
         renderScreen
       )}
+      <LogoutButton
+        onClick={() => {
+          localStorage.clear()
+          goToLogin(navigate)
+        }}
+      >
+        Logout
+      </LogoutButton>
       <Footer />
     </div>
   )

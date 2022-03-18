@@ -1,3 +1,5 @@
+import { Button } from "@mui/material"
+import styledEngine from "@mui/styled-engine"
 import styled from "styled-components"
 
 const DataContainer = styled.div`
@@ -47,4 +49,13 @@ const OrderHistoryContainer = styled.div`
     border-bottom: 1px solid black;
   }
 `
-export { DataContainer, AdressContainer, OrderHistoryContainer, Container }
+const LogoutButton = styledEngine(Button)`
+  color: red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-right: 6px;
+  z-index: 4;
+`
+
+export { DataContainer, AdressContainer, OrderHistoryContainer, Container, LogoutButton }

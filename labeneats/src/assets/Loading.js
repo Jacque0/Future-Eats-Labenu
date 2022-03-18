@@ -1,10 +1,21 @@
 import styled from "styled-components"
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3em;
+  color: ${props => props.color ? props.color : 'black'};
+  p{
+    margin: 6px;
+  }
+`
+
 const Icon = styled.div`
   width: 20px;
   height: 20px;
-  border: 2px solid ${props => props.color ? props.color : 'black'};
   border-radius: 50%;
+  border: 2px solid ${props => props.color ? props.color : 'black'};
   border-bottom-color: transparent;
   border-left-color: transparent;
   animation: load 1.5s ease infinite;
@@ -19,5 +30,8 @@ const Icon = styled.div`
 `
 
 export default function Loading(props) {
-  return <Icon color={props.color}/>
+  return <Container  color={props.color}>
+  <Icon color={props.color}/>
+  <p>{props.children}</p>
+  </Container>
 }

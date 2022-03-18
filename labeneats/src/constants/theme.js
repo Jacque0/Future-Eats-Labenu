@@ -13,6 +13,14 @@ const theme = createTheme({
         },
         terciary:{
             main: primaryColors.black25
+        },
+        success:{
+            main: primaryColors.midGreen,
+            contrastText: primaryColors.black,
+        },
+        info:{
+            main: primaryColors.midGreen,
+            contrastText: primaryColors.black,
         }
     }
   });

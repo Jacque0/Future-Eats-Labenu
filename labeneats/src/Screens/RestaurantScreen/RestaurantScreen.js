@@ -17,7 +17,7 @@ export default function RestaurantScreen() {
   const getRestaurantDetails = async (id) => {
     const headers = {
       headers: {
-        auth: token,
+        auth: localStorage.getItem('token'),
       },
     };
     try {

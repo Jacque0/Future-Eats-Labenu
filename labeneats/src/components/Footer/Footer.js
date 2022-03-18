@@ -48,9 +48,9 @@ export default function Footer() {
 
   return (
     <ContainerFooter>
-        <ButtonFooter onClick={changeToHome}>{page==='home'?<img src={homeGreen} />:<img src={homeGray} />}</ButtonFooter>
-        <ButtonFooter onClick={changeToCart}>{page==='cart'?<img src={cartGreen} />:<img src={cartGray} />}</ButtonFooter>
-        <ButtonFooter onClick={changeToProfile}>{page==='profile'?<img src={profileGreen} />:<img src={profileGray} />}</ButtonFooter>
+        <ButtonFooter onClick={changeToHome}>{page==='home'?<img alt='icone-home' src={homeGreen} />:<img alt='icone-home' src={homeGray} />}</ButtonFooter>
+        <ButtonFooter onClick={changeToCart}>{page==='cart'?<img alt='icone-carrinho' src={cartGreen} />:<img alt='icone-carrinho' src={cartGray} />}</ButtonFooter>
+        <ButtonFooter onClick={changeToProfile}>{page==='profile'?<img alt='icone-perfil' src={profileGreen} />:<img alt='icone-perfil' src={profileGray} />}</ButtonFooter>
     </ContainerFooter>
   )
 }

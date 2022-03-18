@@ -138,7 +138,13 @@ export default function HomeScreen() {
         </CardsContainer>
       )}
       <OrderWarning/>
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

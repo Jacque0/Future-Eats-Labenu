@@ -20,7 +20,6 @@ export default function SearchScreen() {
   const handleChange = (event, newValue) => {
     newValue = event.target.value
     setRestaurantName(newValue);
-    console.log(restaurantName)
   };
 
   const restaurantsList = restaurants?.filter(restaurant => {

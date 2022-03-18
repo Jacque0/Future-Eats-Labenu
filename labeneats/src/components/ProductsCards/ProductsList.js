@@ -29,7 +29,7 @@ function ProductsList(props) {
 
         {item.map((item) => {
           return (
-            <ProductCard idRestaurant={props.idRestaurant} product={item} />
+            <ProductCard key={item.id} idRestaurant={props.idRestaurant} product={item} />
           );
         })}
       </CategoryCard>

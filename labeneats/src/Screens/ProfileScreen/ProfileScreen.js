@@ -1,26 +1,25 @@
-import React from "react"
-import Footer from "../../components/Footer/Footer"
-import Header from "../../components/Header/Header"
-import { BASE_URL } from "../../constants/BASE_URL"
-import { useRequestData } from "../../hooks/useRequestData"
+import React, { useEffect } from "react";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import { BASE_URL } from "../../constants/BASE_URL";
+import { useRequestData } from "../../hooks/useRequestData";
 import {
   DataContainer,
   AdressContainer,
   OrderHistoryContainer,
   Container,
   LogoutButton,
-} from "./styledProfileScreen"
-import Loading from "../../assets/Loading"
-import { useNavigate } from "react-router-dom"
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined"
+} from "./styledProfileScreen";
+import Loading from "../../assets/Loading";
+import { useNavigate } from "react-router-dom";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import {
   goToEditAdress,
   goToEditProfile,
   goToLogin,
-} from "../../routes/coordinator"
-import { primaryColors } from "../../constants/colors"
-import OrderHistory from "./OrderHistory"
-import { Button } from "@mui/material"
+} from "../../routes/coordinator";
+import { primaryColors } from "../../constants/colors";
+import HistoryCard from "../../components/HistoryCard/HistoryCard";
 
 export default function ProfileScreen() {
   const { data, error, loading } = useRequestData(
@@ -35,9 +34,9 @@ export default function ProfileScreen() {
       },
     },
     BASE_URL + "/profile"
-  )
+  );
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const renderScreen = (
     <>
@@ -62,10 +61,10 @@ export default function ProfileScreen() {
       </Container>
       <OrderHistoryContainer>
         <span>Histórico de pedidos</span>
-        <OrderHistory />
+        <HistoryCard />
       </OrderHistoryContainer>
     </>
-  )
+  );
 
   return (
     <div>
@@ -86,13 +85,13 @@ export default function ProfileScreen() {
       )}
       <LogoutButton
         onClick={() => {
-          localStorage.clear()
-          goToLogin(navigate)
+          localStorage.clear();
+          goToLogin(navigate);
         }}
       >
         Logout
       </LogoutButton>
       <Footer />
     </div>
-  )
+  );
 }

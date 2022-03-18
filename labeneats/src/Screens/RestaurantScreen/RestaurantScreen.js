@@ -9,18 +9,15 @@ import GlobalStateContext from "../../GlobalStates/GlobalStateContext";
 import ProductsList from "../../components/ProductsCards/ProductsList";
 import { CardsContainer } from "../../components/ProductsCards/styledProductsList";
 
-
 export default function RestaurantScreen() {
   const { setters } = useContext(GlobalStateContext);
   const [details, setDetails] = useState();
   const params = useParams();
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkFxQUVJc1RxVzhkS3ZuaGZIcmhDIiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJjcGYiOiIxMjMuMTExLjExMS0xMSIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSdWEgRmxvcmlhbsOzcG9saXMgRCAtLCA4MTUgLSBDZW50cm8iLCJpYXQiOjE2NDczODM2NjZ9.ildtCr0kvS0v010AH5omJPLCGgsaFdnNzKX-At1Yu2M";
 
   const getRestaurantDetails = async (id) => {
     const headers = {
       headers: {
-        auth: localStorage.getItem('token'),
+        auth: localStorage.getItem("token"),
       },
     };
     try {
@@ -45,7 +42,7 @@ export default function RestaurantScreen() {
         <DetailedRestaurantCard details={details}>
           <h1>{details?.id}</h1>
         </DetailedRestaurantCard>
-        <ProductsList products={details?.products}/>
+        <ProductsList products={details?.products} />
       </CardsContainer>
     </div>
   );

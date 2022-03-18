@@ -10,17 +10,17 @@ import { CardsContainer } from "../../components/ProductsCards/styledProductsLis
 import Loading from "../../assets/Loading";
 import { primaryColors } from "../../constants/colors";
 
-
 export default function RestaurantScreen() {
   const [details, setDetails] = useState();
   const params = useParams();
   const token = localStorage.getItem('token');
   const [loading, setLoading] = useState(true);
 
+
   const getRestaurantDetails = async (id) => {
     const headers = {
       headers: {
-        auth: localStorage.getItem('token'),
+        auth: localStorage.getItem("token"),
       },
     };
     try {
@@ -61,7 +61,13 @@ export default function RestaurantScreen() {
           <ProductsList idRestaurant={params.id} products={details?.products}/>
         </CardsContainer>
       }
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

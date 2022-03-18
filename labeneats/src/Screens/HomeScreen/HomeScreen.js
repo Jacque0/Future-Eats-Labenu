@@ -15,6 +15,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import theme from "../../constants/theme";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import OrderWarning from "../../components/OrderWarning/OrderWarning";
 import Loading from "../../assets/Loading";
 
 export default function HomeScreen() {
@@ -136,7 +137,14 @@ export default function HomeScreen() {
           )}
         </CardsContainer>
       )}
+      <OrderWarning/>
+      <div 
+      style={{
+        marginTop: "70px",
+      }}
+      >
       <Footer />
+      </div>
     </div>
   );
 }

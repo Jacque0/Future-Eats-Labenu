@@ -10,7 +10,7 @@ export const placeOrder = (body, restaurantId, setCart, setError, setSuccess) =>
     .then((resp) => {
       setSuccess("Pedido realizado")
       setCart([])
-      localStorage.setItem('cart', []);
+      localStorage.setItem('cart', JSON.stringify([]));
     })
     .catch((err) => {
       setError(err.response.data.message);

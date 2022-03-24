@@ -18,7 +18,7 @@ O Future Eats tem por objetivo emular um aplicativo de delivery. Ancorados nos m
 
 ## Instalação
 ```
-$ git clone https://github.com/future4code/Moreira-labe-food1.git
+$ git clone https://github.com/Jacque0/Future-Eats-Labenu.git
 $ npm install
 $ npm start
 ```
